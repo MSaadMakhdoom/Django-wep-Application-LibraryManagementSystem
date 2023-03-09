@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<div style="display: flex; flex-direction: column; padding-left: 100px">
+  <h2>Login</h2>
+  <form method="post" style="flex-direction: column">
+    {% csrf_token %}
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" />
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up Now</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div style="padding-left: 30px">
+  <h2>Authors List</h2>
+  <table style="border-collapse: collapse; width: 100%;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid #ddd; padding: 8px;">Author Name</th>
+        {% if request.user.is_superuser %}
+        <th style="border: 1px solid #ddd; padding: 8px;">Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for author in authors %}
+      <tr>
+        <td style="border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px;">
+          <a href="{% url 'author_detail' author.id %}">
+            {{ author.first_name }} {{ author.last_name }}
+          </a>
+        </td>
+        {% if request.user.is_superuser %}
+        <td style="border-bottom: 1px solid #ddd; padding: 8px;">
+          <a href="{% url 'delete_author' author.id %}" style="color: red">
+            Delete
+          </a>
+          <span style="border-left: 1px solid #ddd; padding-left: 8px; padding-right: 8px;"></span>
+          <a href="{% url 'edit_author' author.id %}" style="color: blue">
+            Edit
+          </a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

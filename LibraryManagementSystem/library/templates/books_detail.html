@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<div style="padding-left: 30px">
+  
+  <h4>Book Title:{{ book.title }}</h4>
+ 
+  <p>ISBN: {{ book.ISBN }}</p>
+  <p>Genre: {{ book.Genre }}</p>
+  <p>Author: {{ book.author.first_name }}</p>
+  <p>Description: {{ book.description }}</p>
+  {% if book.cover_image %}
+  <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" />
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Author{% endblock %}
+
+{% block content %}
+<div style="padding-left: 30px">
+  <h1>Add New Author</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="name">first name:</label>
+    <input type="text" name="first_name" required><br><br>
+    <label for="name">last name:</label>
+    <input type="text" name="last_name" required><br><br>
+
+    <label for="email">Bio:</label>
+    <input type="text" name="bio" required><br><br>
+   
+ 
+    <label for="image">Image:</label>
+    <input type="file" name="image" required><br><br>
+    
+
+  
+    <button type="submit">Add Author</button>
+  </form>
+</div>
+{% endblock %}

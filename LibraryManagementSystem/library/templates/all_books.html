@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<h2 style="padding-left: 50px">Welcome to the {{ request.user.username }}</h2>
+{% else %}
+
+{% endif %}
+
+<div style="display: flex; padding-left: 100px;">
+  <div style="padding-left: 20px">
+    
+    <table style="border-collapse: collapse; width: 100%;">
+      <h2>Book List</h2>
+      <thead>
+        <tr style="border-bottom: 2px solid #ddd">
+          {% comment %} <th style="padding: 8px">Title</th>
+          <th style="padding: 8px">Author</th>
+          <th style="padding: 8px">Description</th>
+          {% if request.user.is_superuser %}
+            <th style="padding: 8px">Actions</th>
+          {% endif %} {% endcomment %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr >
+          <td style="border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px;">
+            <a href="{% url 'book_detail' book.id %}">{{ book.title }}</a>  <h7>({{ book.author.first_name }}, {{ book.author.last_name }})</h7>
+          </td>
+         
+          {% if request.user.is_superuser %}
+            <td style="border: 1px solid #ddd; padding: 8px">
+              <a href="{% url 'delete_book' book.id %}" style="margin-right: 10px; color: red;">Delete</a>
+              <a href="{% url 'edit_book' book.id %}" style="color: blue;">Edit</a>
+            </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

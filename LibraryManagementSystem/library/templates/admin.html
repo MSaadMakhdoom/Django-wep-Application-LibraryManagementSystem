@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<div style="padding-left: 100px">
+  <h2>Welcome to the {{ request.user.username }}</h2>
+  <p>The Library has the following authors and books:</p>
+  <ul style="list-style: none; padding: 0">
+    <li style="padding: 10px">Authors: {{total_authors}}</li>
+
+    <li style="padding: 10px">Books: {{total_books}}</li>
+
+    <li style="padding: 10px">Copies: {{total_books}}</li>
+
+    <li style="padding: 10px">Available: {{total_books}}</li>
+  </ul>
+  <p>You have visited the page 2 times</p>
+</div>
+{% endblock %}

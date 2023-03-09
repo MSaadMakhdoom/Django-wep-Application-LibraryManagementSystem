@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}{{ author.first_name }}{% endblock %}
+{% block content %}
+
+<div style="padding-left: 30px">
+  <p>Name:{{author.first_name}}</p>
+  <p>last name:{{author.last_name}}</p>
+  <p>Bio: {{ author.bio }}</p>
+
+  {% if author.image %}
+  <img src="{{ author.image.url }}" alt="{{ author.name }}" />
+  {% endif %}
+
+  <h1>Books:</h1>
+  <ul>
+    {% for book in books %}
+    <li>
+      {{ book.title }}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

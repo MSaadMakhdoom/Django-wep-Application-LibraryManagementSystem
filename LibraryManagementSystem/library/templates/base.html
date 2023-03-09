@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'library/css/style.css' %}">
+    <style>
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            padding: 0 10px;
+            height: 40px;
+        }
+        nav li {
+            margin: 0 2px;
+        }
+        nav a {
+            color: White;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            
+            background-color: skyblue;
+            display: none;
+            position: absolute;
+            z-index: 2;
+            align-items: center;
+            padding: 10px 10px 10px 10px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Local library</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'all_books' %}">All Books</a></li>
+                <li><a href="{% url 'all_authors' %}">All Authors</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'my_books' %}">My Books</a></li>
+                    {% if user.is_superuser %}
+                        <li class="dropdown">
+                            <a href="#">Librarian Functions</a>
+                            <div class="dropdown-content">
+                               
+                                <a href="{% url 'add_book' %}">Add new Book</a>
+                                
+                                <br>
+                                <br>
+                                <a href="{% url 'add_author' %}">Add new Author</a>
+                                <br>
+                                <br>
+                                <a href="{% url 'all_books' %}">All available books</a>
+                               
+                                
+
+
+                            </div>
+                        </li>
+                    {% endif %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                   
+                    <li style="padding-left: 700px"><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li style="padding-left: 30px"><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+
+    <script src="{% static 'library/js/main.js' %}"></script>
+</body>
+</html>

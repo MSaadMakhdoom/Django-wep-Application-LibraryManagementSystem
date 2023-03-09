@@ -1,0 +1,50 @@
+<!-- editbook.html -->
+{% extends 'base.html' %} {% block content %}
+<div style="padding-left: 40px">
+  <h1>Edit Book</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{ book.title }}" />
+    <br />
+    <label for="author">Author:</label>
+    <input
+      type="text"
+      id="author"
+      name="author"
+      value="{{ book.author.first_name }}"
+    />
+
+    <br />
+
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" name="isbn" value="{{ book.ISBN }}" />
+    <br />
+    <label for="Genre">Genre:</label>
+    <input type="text" id="genre" name="genre" value="{{ book.Genre }}" />
+    <br />
+    <label for="published_date">Published Date:</label>
+    <input
+      type="date"
+      id="published_date"
+      name="published_date"
+      value="{{ book.published_date }}"
+    />
+    <br />
+    <label for="description">Description:</label>
+    <textarea id="description" name="description">
+{{ book.description }}</textarea
+    >
+    <br />
+    <label for="cover_image">Cover Image:</label>
+    <input
+      type="text"
+      id="cover_image"
+      name="cover_image"
+      value="{{ book.cover_image }}"
+    />
+    <br />
+    <input type="submit" value="Save" />
+  </form>
+</div>
+{% endblock %}
